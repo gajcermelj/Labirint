@@ -13,9 +13,12 @@
 	border: solid 2px black;
 }
 .slikal svg{
-	position: relative;
+	position: absolute;
+	z-index: 2;
 	
 }
 .slikal canvas{
 	position: absolute;
+	border: solid 2px black;
+	z-index: 1;
 }
