@@ -2,7 +2,20 @@
 	margin: 0;
 	padding: 0;
 }
+.zgornji{
+	border: solid 2px black;
+}
 .main{
-	align-items: center;
-	justify-content: center;
+	text-align: center;
+	border: solid 2px black;
+}
+.spodnji{
+	border: solid 2px black;
+}
+.slikal svg{
+	position: relative;
+	
+}
+.slikal canvas{
+	position: absolute;
 }
