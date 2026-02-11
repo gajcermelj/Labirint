@@ -1,68 +1,310 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
-var x = 12; 
-var y = 12;
+var timerElement = document.getElementById("timer");
+var countdownElement = document.getElementById("countdown");
+var coinsElement = document.getElementById("coins");
+var hintStatusElement = document.getElementById("hintStatus");
+var hintBtn = document.getElementById("hintBtn");
+
+
+
+
+var x = 228; 
+var y = 3;
 var velikost = 10;
 
+
+showHint = true;
 var mazePathX1=[2, 242, 18, 82, 130, 178, 242, 434, 50, 114, 194, 226, 274, 306, 338, 386, 434, 18, 98, 162, 242, 274, 322, 354, 386, 450, 18, 98, 146, 178, 226, 258, 290, 354, 434, 2, 34, 66, 210, 258, 402, 450, 50, 226, 274, 322, 354, 418, 18, 66, 114, 178, 226, 386, 418, 450, 34, 114, 226, 274, 322, 386, 434, 18, 66, 98, 130, 162, 210, 242, 274, 354, 466, 2, 34, 98, 162, 194, 242, 290, 322, 354, 386, 418, 450, 18, 50, 114, 162, 242, 338, 386, 434, 34, 82, 130, 210, 258, 354, 402, 2, 66, 178, 210, 258, 338, 386, 418, 450, 34, 82, 130, 178, 322, 386, 434, 466, 50, 98, 178, 242, 306, 370, 434, 34, 66, 178, 226, 258, 290, 354, 386, 418, 466, 18, 82, 130, 162, 194, 226, 274, 338, 386, 450, 34, 98, 210, 242, 322, 354, 402, 2, 82, 162, 194, 306, 354, 386, 418, 450, 2, 34, 98, 130, 178, 210, 258, 306, 370, 402, 2, 114, 258, 290, 338, 386, 434, 18, 82, 162, 226, 258, 322, 386, 418, 2, 66, 130, 178, 274, 322, 434, 466, 18, 114, 162, 226, 338, 402, 434, 2, 98, 162, 210, 306, 370, 418, 450, 18, 82, 114, 178, 274, 322, 450, 50, 162, 194, 258, 354, 418, 82, 146, 226, 290, 354, 418, 466, 2, 50, 98, 130, 194, 226, 290, 370, 402, 434, 2, 258, 2, 18, 18, 18, 18, 18, 34, 34, 34, 34, 34, 34, 34, 34, 50, 50, 50, 50, 50, 50, 50, 50, 50, 66, 66, 66, 66, 66, 66, 82, 82, 82, 82, 82, 82, 82, 98, 98, 98, 98, 98, 98, 98, 98, 114, 114, 114, 114, 114, 114, 114, 114, 114, 130, 130, 130, 130, 130, 130, 130, 146, 146, 146, 146, 146, 146, 162, 162, 162, 162, 162, 162, 178, 178, 178, 178, 178, 178, 178, 178, 178, 194, 194, 194, 194, 194, 194, 194, 194, 210, 210, 210, 210, 210, 210, 210, 210, 226, 226, 226, 226, 226, 226, 226, 226, 242, 242, 242, 242, 242, 242, 242, 258, 258, 258, 258, 258, 258, 258, 258, 258, 274, 274, 274, 274, 274, 274, 274, 274, 274, 290, 290, 290, 290, 290, 290, 306, 306, 306, 306, 306, 306, 306, 306, 322, 322, 322, 322, 322, 322, 322, 322, 338, 338, 338, 338, 338, 338, 338, 338, 338, 354, 354, 354, 354, 354, 354, 354, 370, 370, 370, 370, 370, 370, 370, 370, 386, 386, 386, 386, 386, 386, 386, 402, 402, 402, 402, 402, 402, 418, 418, 418, 418, 418, 418, 418, 418, 434, 434, 434, 434, 434, 434, 434, 450, 450, 450, 450, 450, 466, 466, 466, 466, 466, 466, 482];	
 var mazePathX2=[226, 482, 34, 114, 146, 210, 338, 466, 98, 162, 210, 258, 290, 322, 370, 418, 482, 66, 146, 194, 258, 290, 338, 370, 418, 466, 34, 114, 162, 194, 242, 274, 306, 418, 482, 18, 50, 98, 226, 386, 418, 466, 146, 258, 290, 338, 386, 466, 34, 98, 162, 210, 290, 402, 434, 466, 82, 146, 242, 306, 354, 402, 450, 50, 82, 114, 146, 194, 226, 258, 338, 386, 482, 18, 50, 146, 178, 210, 274, 306, 338, 370, 402, 434, 466, 34, 66, 130, 226, 306, 354, 402, 466, 50, 114, 178, 226, 306, 386, 434, 18, 114, 194, 242, 322, 370, 402, 434, 466, 50, 98, 162, 194, 338, 402, 450, 482, 66, 114, 226, 290, 354, 402, 466, 50, 98, 210, 242, 274, 306, 370, 402, 434, 482, 66, 98, 146, 178, 210, 258, 290, 354, 418, 466, 66, 162, 226, 306, 338, 370, 466, 50, 146, 178, 210, 322, 370, 402, 434, 466, 18, 82, 114, 146, 194, 226, 274, 322, 386, 482, 18, 146, 274, 322, 370, 402, 466, 50, 130, 178, 242, 290, 370, 402, 466, 18, 114, 162, 226, 306, 402, 450, 482, 50, 130, 194, 258, 370, 418, 482, 34, 114, 194, 274, 322, 386, 434, 466, 34, 98, 146, 210, 306, 402, 466, 114, 178, 242, 338, 370, 434, 114, 194, 258, 306, 386, 434, 482, 34, 82, 114, 162, 210, 258, 338, 386, 418, 466, 242, 482, 2, 18, 18, 18, 18, 18, 34, 34, 34, 34, 34, 34, 34, 34, 50, 50, 50, 50, 50, 50, 50, 50, 50, 66, 66, 66, 66, 66, 66, 82, 82, 82, 82, 82, 82, 82, 98, 98, 98, 98, 98, 98, 98, 98, 114, 114, 114, 114, 114, 114, 114, 114, 114, 130, 130, 130, 130, 130, 130, 130, 146, 146, 146, 146, 146, 146, 162, 162, 162, 162, 162, 162, 178, 178, 178, 178, 178, 178, 178, 178, 178, 194, 194, 194, 194, 194, 194, 194, 194, 210, 210, 210, 210, 210, 210, 210, 210, 226, 226, 226, 226, 226, 226, 226, 226, 242, 242, 242, 242, 242, 242, 242, 258, 258, 258, 258, 258, 258, 258, 258, 258, 274, 274, 274, 274, 274, 274, 274, 274, 274, 290, 290, 290, 290, 290, 290, 306, 306, 306, 306, 306, 306, 306, 306, 322, 322, 322, 322, 322, 322, 322, 322, 338, 338, 338, 338, 338, 338, 338, 338, 338, 354, 354, 354, 354, 354, 354, 354, 370, 370, 370, 370, 370, 370, 370, 370, 386, 386, 386, 386, 386, 386, 386, 402, 402, 402, 402, 402, 402, 418, 418, 418, 418, 418, 418, 418, 418, 434, 434, 434, 434, 434, 434, 434, 450, 450, 450, 450, 450, 466, 466, 466, 466, 466, 466, 482];
 var mazePathY1=[2, 2, 18, 18, 18, 18, 18, 18, 34, 34, 34, 34, 34, 34, 34, 34, 34, 50, 50, 50, 50, 50, 50, 50, 50, 50, 66, 66, 66, 66, 66, 66, 66, 66, 66, 82, 82, 82, 82, 82, 82, 82, 98, 98, 98, 98, 98, 98, 114, 114, 114, 114, 114, 114, 114, 114, 130, 130, 130, 130, 130, 130, 130, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 162, 162, 162, 162, 162, 162, 162, 162, 162, 162, 162, 162, 178, 178, 178, 178, 178, 178, 178, 178, 194, 194, 194, 194, 194, 194, 194, 210, 210, 210, 210, 210, 210, 210, 210, 210, 226, 226, 226, 226, 226, 226, 226, 226, 242, 242, 242, 242, 242, 242, 242, 258, 258, 258, 258, 258, 258, 258, 258, 258, 258, 274, 274, 274, 274, 274, 274, 274, 274, 274, 274, 290, 290, 290, 290, 290, 290, 290, 306, 306, 306, 306, 306, 306, 306, 306, 306, 322, 322, 322, 322, 322, 322, 322, 322, 322, 322, 338, 338, 338, 338, 338, 338, 338, 354, 354, 354, 354, 354, 354, 354, 354, 370, 370, 370, 370, 370, 370, 370, 370, 386, 386, 386, 386, 386, 386, 386, 402, 402, 402, 402, 402, 402, 402, 402, 418, 418, 418, 418, 418, 418, 418, 434, 434, 434, 434, 434, 434, 450, 450, 450, 450, 450, 450, 450, 466, 466, 466, 466, 466, 466, 466, 466, 466, 466, 482, 482, 2, 34, 82, 162, 194, 418, 2, 82, 130, 178, 242, 290, 338, 434, 18, 114, 162, 210, 258, 338, 370, 402, 450, 2, 50, 98, 178, 306, 450, 34, 146, 226, 290, 338, 386, 466, 130, 178, 226, 274, 306, 338, 370, 466, 2, 50, 114, 178, 258, 322, 354, 402, 450, 50, 162, 210, 242, 338, 370, 434, 18, 66, 130, 194, 322, 370, 2, 34, 210, 306, 370, 402, 18, 66, 114, 194, 226, 290, 354, 418, 450, 66, 130, 178, 210, 242, 306, 354, 434, 18, 114, 194, 274, 322, 370, 402, 434, 2, 50, 114, 146, 226, 306, 386, 450, 66, 162, 194, 258, 290, 354, 418, 34, 82, 114, 178, 226, 274, 322, 402, 466, 18, 50, 98, 130, 226, 258, 290, 386, 434, 34, 210, 242, 274, 322, 370, 34, 82, 114, 146, 194, 274, 354, 450, 18, 98, 178, 258, 338, 370, 402, 450, 2, 66, 98, 162, 194, 242, 370, 434, 466, 18, 98, 226, 274, 322, 386, 434, 2, 50, 82, 162, 242, 290, 322, 402, 18, 50, 146, 242, 386, 434, 466, 2, 66, 178, 322, 354, 402, 2, 114, 194, 242, 290, 322, 386, 434, 18, 66, 130, 210, 258, 338, 402, 130, 194, 258, 354, 418, 34, 66, 98, 194, 386, 434, 2];
 var mazePathY2=[2, 2, 18, 18, 18, 18, 18, 18, 34, 34, 34, 34, 34, 34, 34, 34, 34, 50, 50, 50, 50, 50, 50, 50, 50, 50, 66, 66, 66, 66, 66, 66, 66, 66, 66, 82, 82, 82, 82, 82, 82, 82, 98, 98, 98, 98, 98, 98, 114, 114, 114, 114, 114, 114, 114, 114, 130, 130, 130, 130, 130, 130, 130, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 162, 162, 162, 162, 162, 162, 162, 162, 162, 162, 162, 162, 178, 178, 178, 178, 178, 178, 178, 178, 194, 194, 194, 194, 194, 194, 194, 210, 210, 210, 210, 210, 210, 210, 210, 210, 226, 226, 226, 226, 226, 226, 226, 226, 242, 242, 242, 242, 242, 242, 242, 258, 258, 258, 258, 258, 258, 258, 258, 258, 258, 274, 274, 274, 274, 274, 274, 274, 274, 274, 274, 290, 290, 290, 290, 290, 290, 290, 306, 306, 306, 306, 306, 306, 306, 306, 306, 322, 322, 322, 322, 322, 322, 322, 322, 322, 322, 338, 338, 338, 338, 338, 338, 338, 354, 354, 354, 354, 354, 354, 354, 354, 370, 370, 370, 370, 370, 370, 370, 370, 386, 386, 386, 386, 386, 386, 386, 402, 402, 402, 402, 402, 402, 402, 402, 418, 418, 418, 418, 418, 418, 418, 434, 434, 434, 434, 434, 434, 450, 450, 450, 450, 450, 450, 450, 466, 466, 466, 466, 466, 466, 466, 466, 466, 466, 482, 482, 482, 66, 130, 178, 290, 450, 34, 98, 146, 210, 258, 306, 418, 466, 82, 130, 178, 242, 274, 354, 386, 434, 466, 34, 66, 162, 258, 434, 466, 82, 178, 242, 306, 354, 434, 482, 146, 194, 242, 290, 322, 354, 386, 482, 18, 82, 146, 242, 290, 338, 370, 434, 466, 98, 178, 226, 274, 354, 402, 466, 34, 98, 178, 274, 354, 466, 18, 162, 290, 354, 386, 434, 50, 98, 130, 210, 242, 338, 386, 434, 466, 114, 162, 194, 226, 290, 338, 370, 450, 98, 162, 226, 306, 354, 386, 418, 482, 18, 98, 130, 178, 258, 354, 418, 466, 82, 178, 242, 274, 338, 386, 434, 66, 98, 162, 194, 258, 306, 370, 450, 482, 34, 66, 114, 162, 242, 274, 322, 402, 466, 50, 226, 258, 306, 354, 434, 66, 98, 130, 162, 242, 322, 402, 466, 66, 130, 210, 290, 354, 386, 418, 466, 18, 82, 114, 178, 226, 338, 402, 450, 482, 50, 178, 242, 290, 370, 402, 466, 18, 66, 130, 226, 274, 306, 338, 434, 34, 66, 178, 322, 402, 450, 482, 18, 162, 226, 338, 386, 450, 34, 178, 226, 274, 306, 370, 418, 466, 50, 82, 194, 242, 290, 354, 434, 162, 226, 306, 370, 466, 50, 82, 146, 226, 418, 450, 482];
+var tocke=[[234,2],[234,26],[218,26],[218,10],[170,10],[170,26],[154,26],[154,10],[122,10],[122,26],[106,26],[106,42],[90,42],[90,74],[106,74],[106,90],[42,90],[42,122],[26,122],[26,138],[10,138],[10,154],[26,154],[26,170],[42,170],[42,186],[58,186],[58,202],[42,202],[42,218],[26,218],[26,234],[42,234],[42,250],[58,250],[58,266],[106,266],[106,250],[122,250],[122,186],[186,186],[186,202],[202,202],[202,186],[234,186],[234,138],[218,138],[218,106],[266,106],[266,90],[298,90],[298,106],[314,106],[314,138],[346,138],[346,154],[314,154],[314,170],[330,170],[330,218],[314,218],[314,234],[346,234],[346,218],[362,218],[362,234],[426,234],[426,250],[458,250],[458,266],[474,266],[474,314],[394,314],[394,330],[378,330],[378,346],[410,346],[410,378],[426,378],[426,394],[442,394],[442,458],[426,458],[426,474],[394,474],[394,458],[410,458],[410,394],[394,394],[394,378],[378,378],[378,394],[362,394],[362,410],[330,410],[330,394],[314,394],[314,346],[298,346],[298,362],[266,362],[266,378],[250,378],[250,346],[234,346],[234,298],[218,298],[218,314],[202,314],[202,362],[234,362],[234,378],[218,378],[218,394],[154,394],[154,442],[186,442],[186,426],[234,426],[234,410],[250,410],[250,442],[218,442],[218,474],[250,474],[250,482]];
 
-function draw(){
-	ctx.strokeStyle = "black";
-    ctx.lineWidth = 2;
-    for (var i = 0; i < mazePathX1.length; i++) {
-        ctx.beginPath();
-        ctx.moveTo(mazePathX1[i], mazePathY1[i]);
-        ctx.lineTo(mazePathX2[i], mazePathY2[i]);
-        ctx.stroke();
-    }
+
+
+// ===== Player start = začetek črte (malo odmaknjen) =====
+
+
+
+var finishX = tocke[tocke.length - 1][0];
+var finishY = tocke[tocke.length - 1][1];
+
+// =====================
+// TIMER (šteje gor)
+// =====================
+var totalSeconds = 0;
+setInterval(function () {
+  if (gameOver || gameWin) return;
+  totalSeconds++;
+  var mm = Math.floor(totalSeconds / 60);
+  var ss = totalSeconds % 60;
+  timerElement.textContent =
+    (mm < 10 ? "0" + mm : mm) + ":" + (ss < 10 ? "0" + ss : ss);
+}, 1000);
+
+// =====================
+// COINS (random, brez checka)
+// =====================
+var coinCount = 10;
+var coins = [];
+var coinsCollected = 0;
+
+function randInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Funkcija za risanje igralca
-function drawPlayer() {
-    ctx.fillStyle = "red";
-    ctx.fillRect(x, y, velikost, velikost);
+function spawnCoins() {
+  coins = [];
+  coinsCollected = 0;
+  coinsElement.textContent = "Coins: 0/" + coinCount;
+
+  for (var i = 0; i < coinCount; i++) {
+    coins.push({
+      x: randInt(0, canvas.width - velikost),
+      y: randInt(0, canvas.height - velikost),
+      taken: false
+    });
+  }
 }
 
-// Preverjanje kolizije s črno barvo (zidovi)
-function canMove(newX, newY) {
-    // Preverimo 4 točke okoli kvadrata, da vidimo če zadene zid
-    var points = [
-        [newX, newY],
-        [newX + velikost, newY],
-        [newX, newY + velikost],
-        [newX + velikost, newY + velikost]
-    ];
-    for (var p of points) {
-        var pixel = ctx.getImageData(p[0], p[1], 1, 1).data;
-        if (pixel[0] === 0 && pixel[1] === 0 && pixel[2] === 0) {
-            return false;
-        }
-    }
-    return true;
+function drawCoins() {
+  ctx.fillStyle = "gold";
+  for (var i = 0; i < coins.length; i++) {
+    if (!coins[i].taken) ctx.fillRect(coins[i].x, coins[i].y, velikost, velikost);
+  }
 }
-window.addEventListener('keydown', function(e) {
-    var step = 4;
-    var nextX = x;
-    var nextY = y;
 
-    if (e.key === "ArrowUp") nextY -= step;
-    if (e.key === "ArrowDown") nextY += step;
-    if (e.key === "ArrowLeft") nextX -= step;
-    if (e.key === "ArrowRight") nextX += step;
+function rectsOverlap(ax, ay, as, bx, by, bs) {
+  return ax < bx + bs && ax + as > bx && ay < by + bs && ay + as > by;
+}
 
-    if (canMove(nextX, nextY)) {
-        x = nextX;
-        y = nextY;
+function checkCoinPickup() {
+  for (var i = 0; i < coins.length; i++) {
+    if (coins[i].taken) continue;
+    if (rectsOverlap(x, y, velikost, coins[i].x, coins[i].y, velikost)) {
+      coins[i].taken = true;
+      coinsCollected++;
+      coinsElement.textContent = "Coins: " + coinsCollected + "/" + coinCount;
+
+      if (coinsCollected >= 5 && !hintUnlocked) {
+        hintUnlocked = true;
+        hintStatusElement.textContent = "Namig: odklenjen";
+        hintBtn.disabled = false;
+      }
     }
+  }
+}
+
+// =====================
+// NAMIG (odklene po 5)
+// =====================
+var hintUnlocked = false;
+var showHint = false;
+
+hintStatusElement.textContent = "Namig: zaklenjen";
+hintBtn.disabled = true;
+
+hintBtn.addEventListener("click", function () {
+  if (!hintUnlocked) return;
+  showHint = !showHint;
 });
-function update() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    draw();
-    drawPlayer();
-    requestAnimationFrame(update);
+
+function drawHint() {
+  if (!showHint) return;
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = "blue";
+
+  for (var i = 0; i < tocke.length - 1; i++) {
+    ctx.beginPath();
+    ctx.moveTo(tocke[i][0], tocke[i][1]);
+    ctx.lineTo(tocke[i + 1][0], tocke[i + 1][1]);
+    ctx.stroke();
+  }
 }
+
+// =====================
+// LABIRINT
+// =====================
+function drawMaze() {
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 2;
+
+  for (var i = 0; i < mazePathX1.length; i++) {
+    ctx.beginPath();
+    ctx.moveTo(mazePathX1[i], mazePathY1[i]);
+    ctx.lineTo(mazePathX2[i], mazePathY2[i]);
+    ctx.stroke();
+  }
+}
+
+function drawPlayer() {
+  ctx.fillStyle = "red";
+  ctx.fillRect(x, y, velikost, velikost);
+}
+
+// =====================
+// KOLIZIJA (črna = zid)
+// =====================
+function hitsWallAt(px, py) {
+  if (px < 0 || py < 0 || px >= canvas.width || py >= canvas.height) return true;
+  var pixel = ctx.getImageData(px, py, 1, 1).data;
+  return (pixel[3] > 0 && pixel[0] === 0 && pixel[1] === 0 && pixel[2] === 0);
+}
+
+function canMoveRect(newX, newY) {
+  var sample = 2;
+  for (var i = 0; i <= velikost; i += sample) {
+    if (hitsWallAt(newX + i, newY)) return false;
+    if (hitsWallAt(newX + i, newY + velikost)) return false;
+  }
+  for (var j = 0; j <= velikost; j += sample) {
+    if (hitsWallAt(newX, newY + j)) return false;
+    if (hitsWallAt(newX + velikost, newY + j)) return false;
+  }
+  return true;
+}
+
+// =====================
+// PREMIKANJE
+// =====================
+window.addEventListener("keydown", function (e) {
+  if (gameOver || gameWin) return;
+
+  if (["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(e.key)) e.preventDefault();
+
+  var step = 4;
+  var dx = 0, dy = 0;
+  if (e.key === "ArrowUp") dy = -1;
+  if (e.key === "ArrowDown") dy = 1;
+  if (e.key === "ArrowLeft") dx = -1;
+  if (e.key === "ArrowRight") dx = 1;
+  if (dx === 0 && dy === 0) return;
+
+  for (var s = 0; s < step; s++) {
+    var nx = x + dx;
+    var ny = y + dy;
+    if (canMoveRect(nx, ny)) {
+      x = nx; y = ny;
+      checkCoinPickup();
+    } else break;
+  }
+});
+
+// =====================
+// CHASER: po 30s gre po poti
+// =====================
+var chaseIn = 30;
+var chaserActive = false;
+
+countdownElement.textContent = "Chaser in: " + chaseIn;
+
+setInterval(function () {
+  if (gameOver || gameWin) return;
+  if (chaserActive) return;
+
+  chaseIn--;
+  if (chaseIn <= 0) {
+    chaserActive = true;
+    countdownElement.textContent = "Chaser: ACTIVE";
+  } else {
+    countdownElement.textContent = "Chaser in: " + chaseIn;
+  }
+}, 1000);
+
+// chaser kvadrat
+var chaserX = tocke[0][0] - velikost / 2;
+var chaserY = tocke[0][1] - velikost / 2;
+var chaserIndex = 0;
+
+function drawChaser() {
+  if (!chaserActive) return;
+  ctx.fillStyle = "purple";
+  ctx.fillRect(chaserX, chaserY, velikost, velikost);
+}
+
+function moveChaserAlongPath() {
+  if (!chaserActive) return;
+
+  // ko pride do konca poti -> če ti še nisi zmagal, izgubiš
+  if (chaserIndex >= tocke.length - 1) {
+    if (!gameWin) gameOver = true;
+    return;
+  }
+
+  // premik na naslednjo točko (preprosto)
+  var tx = tocke[chaserIndex][0] - velikost / 2;
+  var ty = tocke[chaserIndex][1] - velikost / 2;
+
+  // malo “gladko”: približuj se 1px
+  var speed = 1;
+  if (Math.abs(chaserX - tx) > 0) chaserX += (chaserX < tx ? speed : -speed);
+  if (Math.abs(chaserY - ty) > 0) chaserY += (chaserY < ty ? speed : -speed);
+
+  // ko je dovolj blizu, pojdi na naslednjo točko
+  if (Math.abs(chaserX - tx) <= 1 && Math.abs(chaserY - ty) <= 1) {
+    chaserIndex++;
+  }
+}
+
+function checkChaserCatch() {
+  if (!chaserActive) return false;
+  return rectsOverlap(x, y, velikost, chaserX, chaserY, velikost);
+}
+
+// =====================
+// WIN / LOSE
+// =====================
+var gameOver = false;
+var gameWin = false;
+
+function checkWin() {
+  var px = x + velikost/2;
+  var py = y + velikost/2;
+  var dx = px - finishX;
+  var dy = py - finishY;
+  return (dx*dx + dy*dy) < (12*12);
+}
+
+function drawEndText(text) {
+  ctx.fillStyle = "rgba(255,255,255,0.85)";
+  ctx.fillRect(0, canvas.height/2 - 30, canvas.width, 60);
+
+  ctx.fillStyle = "black";
+  ctx.font = "28px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText(text, canvas.width/2, canvas.height/2 + 10);
+}
+
+// =====================
+// MAIN LOOP
+// =====================
+function update() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  drawMaze();
+  drawHint();
+  drawCoins();
+
+  moveChaserAlongPath();
+  drawChaser();
+
+  drawPlayer();
+
+  if (!gameOver && !gameWin) {
+    if (checkChaserCatch()) gameOver = true;
+    else if (checkWin()) gameWin = true;
+  }
+
+  if (gameOver) drawEndText("GAME OVER");
+  if (gameWin) drawEndText("YOU WIN!");
+
+  requestAnimationFrame(update);
+}
+
+// start
+spawnCoins();
 update();

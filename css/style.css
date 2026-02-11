@@ -1,18 +1,19 @@
-*{
-	margin: 0;
-	padding: 0;
-}
 .zgornji{
-	border: solid 2px black;
+  border: solid 2px black;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  padding:10px;
 }
-.main{
-	justify-content: center;
-	align-items: center;
+
+.hud{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:4px;
 }
-.spodnji{
-	border: solid 2px black;
-}
-#canvas{
-	display: block;
-    margin: 0 auto;
+
+.narisi[disabled]{
+  opacity:0.5;
+  cursor:not-allowed;
 }
