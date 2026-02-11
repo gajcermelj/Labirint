@@ -6,19 +6,13 @@
 	border: solid 2px black;
 }
 .main{
-	text-align: center;
-	border: solid 2px black;
+	justify-content: center;
+	align-items: center;
 }
 .spodnji{
 	border: solid 2px black;
 }
-.slikal svg{
-	position: absolute;
-	z-index: 2;
-	
-}
-.slikal canvas{
-	position: absolute;
-	border: solid 2px black;
-	z-index: 1;
+#canvas{
+	display: block;
+    margin: 0 auto;
 }
