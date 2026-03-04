@@ -1,28 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Rolex Website</title>
-	<link rel="shortcut icon" type="slike/icon" href="slike/favicon.png" />
+    <title>Labirint Igra</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<div class="zgornji">
-		<h1>labirint igra</h1>
-		<div class="hud">
-			<div id="timer">00:00</div>
-			<div id="countdown">Chaser in: 30</div>
-			<div id="coins">Coins: 0/10</div>
-			<div id="hintStatus">Namig: zaklenjen</div>
-			<button id="hintBtn" disabled>Namig</button>
-		</div>
-	</div>
-	<div class="main">
-		<canvas width="484" height="484" id="canvas"></canvas>
-	</div>
-	<div class="spodnji">
-	</div>
-	<script src="js/script.js"></script>
+    <div class="igra-container">
+        <div class="zgornji">
+            <h1>Labirint Igra</h1>
+            <div class="hud">
+                <div id="timer">00:00</div>
+                <div id="countdown">Lovec (chaser) čez: 30</div>
+                <div id="coins">Kovanci: 0/10</div>
+                <div id="hintStatus">Namig: zaklenjen</div>
+                <button id="hintBtn" disabled>Pokaži namig</button>
+            </div>
+        </div>
+        
+        <div class="main">
+            <canvas width="484" height="484" id="canvas"></canvas>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

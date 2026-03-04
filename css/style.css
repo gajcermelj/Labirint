@@ -1,19 +1,60 @@
-.zgornji{
-  border: solid 2px black;
-  display:flex;
-  justify-content: space-between;
-  align-items:center;
-  padding:10px;
+/* Poskrbimo, da je vse na sredini ekrana */
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
 }
 
-.hud{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  gap:4px;
+/* Glavni vsebnik za igro in zgornjo vrstico */
+.igra-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Razmik med naslovom in igro */
 }
 
-.narisi[disabled]{
-  opacity:0.5;
-  cursor:not-allowed;
+/* Zgornja vrstica z informacijami */
+.zgornji {
+    background-color: white;
+    border: solid 2px black;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.hud {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    font-weight: bold;
+}
+
+/* Gumb za namig */
+button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Platno (kjer se riše igra) */
+canvas {
+    background-color: white;
+    border: solid 2px black;
+    border-radius: 8px;
+    display: block; /* Odstrani prazen prostor pod platnom */
 }
