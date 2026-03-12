@@ -36,7 +36,7 @@ var finishX = tocke[tocke.length - 1][0];
 var finishY = tocke[tocke.length - 1][1];
 
 // Kovanci in slike
-var coinCount = 10;
+var coinCount = 90;
 var coins = [];
 var coinsCollected = 0;
 var coinImg = new Image();
@@ -101,14 +101,12 @@ function rectsOverlap(ax, ay, as, bx, by, bs) {
 function checkCoinPickup() {
   for (var i = 0; i < coins.length; i++) {
     if (!coins[i].taken && rectsOverlap(x, y, velikost, coins[i].x, coins[i].y, 10)) {
+		new Audio("zvok/padec-kovanca.mp3").play();
       coins[i].taken = true;
       coinsCollected++;
       coinsElement.textContent = "Kovanci: " + coinsCollected + "/" + coinCount;
-      if (coinsCollected >= 5 && !hintUnlocked) {
-        hintUnlocked = true;
-        hintStatusElement.textContent = "Namig: odklenjen";
-        hintBtn.disabled = false;
-      }
+      if(coinsCollected%3==0)
+        SlikaZaklad();
     }
   }
 }
@@ -134,6 +132,18 @@ function drawCoins() {
 }
 
 function drawPlayer() { ctx.fillStyle = "red"; ctx.fillRect(x, y, velikost, velikost); }
+
+var frame = 0;
+
+function SlikaZaklad() {
+    if (frame < 4) {
+        frame++;
+    }
+
+    const frameWidth = 250;
+    document.getElementById("zaklad").style.backgroundPosition =
+        `-${frame * frameWidth}px 0px`;
+}
 
 // Tipkovnica
 window.addEventListener("keydown", function (e) {
@@ -189,7 +199,7 @@ function update() {
   }
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "white"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "transparent"; ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   drawMaze();
   if (showHint) { ctx.strokeStyle="blue"; ctx.beginPath(); ctx.moveTo(tocke[0][0], tocke[0][1]); tocke.forEach(t=>ctx.lineTo(t[0],t[1])); ctx.stroke(); }
