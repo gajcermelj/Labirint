@@ -1,4 +1,3 @@
-/* Poskrbimo, da je vse na sredini ekrana */
 body {
     margin: 0;
     display: flex;
@@ -6,21 +5,39 @@ body {
 	background-image: url("../Slike/slikapuscave.jpg");
 	background-size: cover;
     align-items: center;
-    background-color: #f4f4f4;
     font-family: Arial, sans-serif;
 }
 
-/* Glavni vsebnik za igro in zgornjo vrstico */
-.igra-container {
+.container {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Razmik med naslovom in igro */
+    gap: 15px;
 }
-
-/* Zgornja vrstica z informacijami */
+.srce{
+	height: 10vh;
+	width: 40vh;
+	gap: 3vh;
+}
+#srce1{
+	height: 10vh;
+	width: 10vh;
+	background-image: url("../Slike/srce.png");
+	background-size: cover;
+	
+}
+#srce2{
+	height: 10vh;
+	width: 10vh;
+	background-image: url("../Slike/srce.png");
+	background-size: cover;
+}
+#srce3{
+	height: 10vh;
+	width: 10vh;
+	background-image: url("../Slike/srce.png");
+	background-size: cover;
+}
 .zgornji {
-    background-color: white;
-    border: solid 2px black;
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
@@ -44,7 +61,7 @@ body {
 
 h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 40px;
 }
 
 .hud {
