@@ -2,8 +2,7 @@ body {
     margin: 0;
     display: flex;
     justify-content: center;
-	background-image: url("../Slike/slikapuscave.jpg");
-	background-size: cover;
+	background-image: url("../Slike/beach1.png");
     align-items: center;
     font-family: Arial, sans-serif;
 }
