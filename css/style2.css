@@ -1,0 +1,48 @@
+body{
+	background-image: url("../Slike/zacetnastran.jpeg");
+	background-image: cover;
+	background-position: center;
+	background-image: no-repeat;
+}
+.container{
+	justify-content: center;
+	align-items: flex-end;
+	gap: 12px;
+	display: flex;
+	height: 80vh;
+	margin-top: 10vh;
+}
+.start {
+    appearance: none;
+    border: 2px solid #4a0f0f;
+    background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+    color: #d8c7a1;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 16px 34px;
+    border-radius: 0; /* square */
+    cursor: pointer;
+    box-shadow:
+      0 0 0 1px #000 inset,
+      0 0 18px rgba(120,0,0,0.45),
+      0 8px 18px rgba(0,0,0,0.6);
+    text-shadow:
+      0 1px 0 #000,
+      0 0 8px rgba(255,0,0,0.25);
+    transition: 0.12s;
+  }
+
+  .start:hover {
+    background: linear-gradient(180deg, #221111 0%, #0b0b0b 100%);
+    box-shadow:
+      0 0 0 1px #000 inset,
+      0 0 24px rgba(140,0,0,0.6),
+      0 10px 22px rgba(0,0,0,0.7);
+  }
+
+  .start:active {
+    transform: translateY(1px);
+  }

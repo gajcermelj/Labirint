@@ -1,16 +1,40 @@
 body {
     margin: 0;
+	padding: 0;
     display: flex;
     justify-content: center;
-	background-image: url("../Slike/beach1.png");
     align-items: center;
+    min-height: 100vh;
+    background-image: url("../Slike/beach (4).png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     font-family: Arial, sans-serif;
 }
 
 .container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 15px;
+}
+
+.main {
+    display: flex;
+    gap: 15px;
+	margin-top: 14vh;
+	margin-left: 14vh;
+}
+
+.zgornji {
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+	gap: 30vh;
 }
 .srce{
 	height: 10vh;
@@ -36,22 +60,11 @@ body {
 	background-image: url("../Slike/srce.png");
 	background-size: cover;
 }
-.zgornji {
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-}
-.main {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+
 
 #zaklad {
-    width: 250px;
-    height: 230px;
+    width: 300px;
+    height: 250px;
     background-image: url("../Slike/zaklad.png");
     background-repeat: no-repeat;
     background-size: 1000px 230px;
@@ -74,4 +87,5 @@ canvas {
     background-color: transparent;
     border: none;
     display: block;
+	margin-left: 10%;
 }
