@@ -27,7 +27,7 @@ window.onload = function() {
     var finishX = tocke[tocke.length - 1][0];
     var finishY = tocke[tocke.length - 1][1];
 
-    var coinCount = 90;
+    var coinCount = 30;
     var coins = [];
     var coinsCollected = 0;
     var coinImg = new Image();
@@ -146,17 +146,21 @@ window.onload = function() {
                 coins[i].taken = true;
                 coinsCollected++;
                 coinsElement.textContent = "Kovanci: " + coinsCollected + "/" + coinCount;
-                if (frame < 4) frame++;
+                if (coinsCollected%3==0){
+					frame++;
+				}
                 document.getElementById("zaklad").style.backgroundPosition = `-${frame * 250}px 0px`;
             }
         }
     }
 
-    var totalSeconds = 0;
+    var totalSeconds = 100;
     setInterval(() => {
-        totalSeconds++;
-        var m = Math.floor(totalSeconds / 60), s = totalSeconds % 60;
-        timerElement.textContent = (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+        totalSeconds--;
+        timerElement.textContent = totalSeconds + " sekund";
+        if (totalSeconds <= 0){
+			gameOver = true;
+		}
     }, 1000);
 
     // --- PIKE VZDOLŽ REŠITVE ---
@@ -201,8 +205,7 @@ window.onload = function() {
             }
         }
 
-        // Narisat pirata
-        if (piratImg.complete && piratFrameW > 0) {
+        // pirat
             ctx.drawImage(
                 piratImg,
                 piratDir * piratFrameW, 0,          // kateri del slike (smer)
@@ -211,10 +214,7 @@ window.onload = function() {
                 y - piratSize/2 + velikost/2,
                 piratSize, piratSize
             );
-        } else {
-            ctx.fillStyle = "red";
-            ctx.fillRect(x, y, velikost, velikost);
-        }
+        
 
         if (Math.hypot(x + 5 - finishX, y + 5 - finishY) < 12) {
             gameWin = true;
