@@ -89,3 +89,13 @@ canvas {
     display: block;
 	margin-left: 10%;
 }
+.gumb{
+	height: 4vh;
+	width: 3vh;
+	margin-top: 9vh;
+	margin-left: 17vh;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	
+}

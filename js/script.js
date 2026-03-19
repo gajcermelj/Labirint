@@ -16,7 +16,6 @@ window.onload = function() {
     var igraPoteka = true; 
     var gameOver = false;
     var gameWin = false;
-    var obvestiloPrikazano = false;
 
 	var mazePathX1=[2, 242, 18, 82, 130, 178, 242, 434, 50, 114, 194, 226, 274, 306, 338, 386, 434, 18, 98, 162, 242, 274, 322, 354, 386, 450, 18, 98, 146, 178, 226, 258, 290, 354, 434, 2, 34, 66, 210, 258, 402, 450, 50, 226, 274, 322, 354, 418, 18, 66, 114, 178, 226, 386, 418, 450, 34, 114, 226, 274, 322, 386, 434, 18, 66, 98, 130, 162, 210, 242, 274, 354, 466, 2, 34, 98, 162, 194, 242, 290, 322, 354, 386, 418, 450, 18, 50, 114, 162, 242, 338, 386, 434, 34, 82, 130, 210, 258, 354, 402, 2, 66, 178, 210, 258, 338, 386, 418, 450, 34, 82, 130, 178, 322, 386, 434, 466, 50, 98, 178, 242, 306, 370, 434, 34, 66, 178, 226, 258, 290, 354, 386, 418, 466, 18, 82, 130, 162, 194, 226, 274, 338, 386, 450, 34, 98, 210, 242, 322, 354, 402, 2, 82, 162, 194, 306, 354, 386, 418, 450, 2, 34, 98, 130, 178, 210, 258, 306, 370, 402, 2, 114, 258, 290, 338, 386, 434, 18, 82, 162, 226, 258, 322, 386, 418, 2, 66, 130, 178, 274, 322, 434, 466, 18, 114, 162, 226, 338, 402, 434, 2, 98, 162, 210, 306, 370, 418, 450, 18, 82, 114, 178, 274, 322, 450, 50, 162, 194, 258, 354, 418, 82, 146, 226, 290, 354, 418, 466, 2, 50, 98, 130, 194, 226, 290, 370, 402, 434, 2, 258, 2, 18, 18, 18, 18, 18, 34, 34, 34, 34, 34, 34, 34, 34, 50, 50, 50, 50, 50, 50, 50, 50, 50, 66, 66, 66, 66, 66, 66, 82, 82, 82, 82, 82, 82, 82, 98, 98, 98, 98, 98, 98, 98, 98, 114, 114, 114, 114, 114, 114, 114, 114, 114, 130, 130, 130, 130, 130, 130, 130, 146, 146, 146, 146, 146, 146, 162, 162, 162, 162, 162, 162, 178, 178, 178, 178, 178, 178, 178, 178, 178, 194, 194, 194, 194, 194, 194, 194, 194, 210, 210, 210, 210, 210, 210, 210, 210, 226, 226, 226, 226, 226, 226, 226, 226, 242, 242, 242, 242, 242, 242, 242, 258, 258, 258, 258, 258, 258, 258, 258, 258, 274, 274, 274, 274, 274, 274, 274, 274, 274, 290, 290, 290, 290, 290, 290, 306, 306, 306, 306, 306, 306, 306, 306, 322, 322, 322, 322, 322, 322, 322, 322, 338, 338, 338, 338, 338, 338, 338, 338, 338, 354, 354, 354, 354, 354, 354, 354, 370, 370, 370, 370, 370, 370, 370, 370, 386, 386, 386, 386, 386, 386, 386, 402, 402, 402, 402, 402, 402, 418, 418, 418, 418, 418, 418, 418, 418, 434, 434, 434, 434, 434, 434, 434, 450, 450, 450, 450, 450, 466, 466, 466, 466, 466, 466, 482];
 	var mazePathX2=[226, 482, 34, 114, 146, 210, 338, 466, 98, 162, 210, 258, 290, 322, 370, 418, 482, 66, 146, 194, 258, 290, 338, 370, 418, 466, 34, 114, 162, 194, 242, 274, 306, 418, 482, 18, 50, 98, 226, 386, 418, 466, 146, 258, 290, 338, 386, 466, 34, 98, 162, 210, 290, 402, 434, 466, 82, 146, 242, 306, 354, 402, 450, 50, 82, 114, 146, 194, 226, 258, 338, 386, 482, 18, 50, 146, 178, 210, 274, 306, 338, 370, 402, 434, 466, 34, 66, 130, 226, 306, 354, 402, 466, 50, 114, 178, 226, 306, 386, 434, 18, 114, 194, 242, 322, 370, 402, 434, 466, 50, 98, 162, 194, 338, 402, 450, 482, 66, 114, 226, 290, 354, 402, 466, 50, 98, 210, 242, 274, 306, 370, 402, 434, 482, 66, 98, 146, 178, 210, 258, 290, 354, 418, 466, 66, 162, 226, 306, 338, 370, 466, 50, 146, 178, 210, 322, 370, 402, 434, 466, 18, 82, 114, 146, 194, 226, 274, 322, 386, 482, 18, 146, 274, 322, 370, 402, 466, 50, 130, 178, 242, 290, 370, 402, 466, 18, 114, 162, 226, 306, 402, 450, 482, 50, 130, 194, 258, 370, 418, 482, 34, 114, 194, 274, 322, 386, 434, 466, 34, 98, 146, 210, 306, 402, 466, 114, 178, 242, 338, 370, 434, 114, 194, 258, 306, 386, 434, 482, 34, 82, 114, 162, 210, 258, 338, 386, 418, 466, 242, 482, 2, 18, 18, 18, 18, 18, 34, 34, 34, 34, 34, 34, 34, 34, 50, 50, 50, 50, 50, 50, 50, 50, 50, 66, 66, 66, 66, 66, 66, 82, 82, 82, 82, 82, 82, 82, 98, 98, 98, 98, 98, 98, 98, 98, 114, 114, 114, 114, 114, 114, 114, 114, 114, 130, 130, 130, 130, 130, 130, 130, 146, 146, 146, 146, 146, 146, 162, 162, 162, 162, 162, 162, 178, 178, 178, 178, 178, 178, 178, 178, 178, 194, 194, 194, 194, 194, 194, 194, 194, 210, 210, 210, 210, 210, 210, 210, 210, 226, 226, 226, 226, 226, 226, 226, 226, 242, 242, 242, 242, 242, 242, 242, 258, 258, 258, 258, 258, 258, 258, 258, 258, 274, 274, 274, 274, 274, 274, 274, 274, 274, 290, 290, 290, 290, 290, 290, 306, 306, 306, 306, 306, 306, 306, 306, 322, 322, 322, 322, 322, 322, 322, 322, 338, 338, 338, 338, 338, 338, 338, 338, 338, 354, 354, 354, 354, 354, 354, 354, 370, 370, 370, 370, 370, 370, 370, 370, 386, 386, 386, 386, 386, 386, 386, 402, 402, 402, 402, 402, 402, 418, 418, 418, 418, 418, 418, 418, 418, 434, 434, 434, 434, 434, 434, 434, 450, 450, 450, 450, 450, 466, 466, 466, 466, 466, 466, 482];
@@ -40,7 +39,6 @@ window.onload = function() {
     var coinAnimSpeed = 6;
     var frame = 0;
 
-    // --- PIRAT SPRITE ---
     var piratImg = new Image();
     piratImg.src = 'Slike/pirat_sprite.png';
     var piratFrameW = 0;
@@ -52,7 +50,6 @@ window.onload = function() {
         piratFrameH = piratImg.height;
     };
 
-    // --- SMOOTH MOVEMENT ---
     var keys = {};
     var speed = 2; // pikslov na frame
 
@@ -75,9 +72,7 @@ window.onload = function() {
         if (keys["ArrowLeft"])  { dx = -1; piratDir = 2; }
         if (keys["ArrowRight"]) { dx =  1; piratDir = 3; }
 
-        // Diagonal normalization - diagonalno gibanje ni hitrejše
         if (dx !== 0 && dy !== 0) {
-            // Move one axis at a time to preserve wall sliding
             var moved = false;
             for (var s = 0; s < speed; s++) {
                 if (canMoveRect(x + dx, y + dy)) {
@@ -100,7 +95,6 @@ window.onload = function() {
         }
     }
 
-    // VSE FUNKCIJE MORAJO BITI ZNOTRAJ ONLOAD
     function prepareCollisionMap() {
         collisionCtx.fillStyle = "white";
         collisionCtx.fillRect(0, 0, collisionCanvas.width, collisionCanvas.height);
@@ -155,15 +149,15 @@ window.onload = function() {
     }
 
     var totalSeconds = 100;
-    setInterval(() => {
+    var timerInterval = setInterval(() => {
         totalSeconds--;
         timerElement.textContent = totalSeconds + " sekund";
         if (totalSeconds <= 0){
 			gameOver = true;
+			clearInterval(timerInterval);
 		}
     }, 1000);
 
-    // --- PIKE VZDOLŽ REŠITVE ---
     function drawFootprints() {
         ctx.fillStyle = "rgba(123, 79, 46, 0.4)";
         for (var i = 0; i < tocke.length; i++) {
@@ -174,7 +168,6 @@ window.onload = function() {
     }
 
     function update() {
-        // Premik se obdela vsak frame
         processMovement();
 
         coinAnimCounter++;
@@ -185,7 +178,6 @@ window.onload = function() {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Narisat labirint
         ctx.strokeStyle = "#BA9461";
         ctx.lineWidth = 2;
         for (var i = 0; i < mazePathX1.length; i++) {
@@ -195,10 +187,8 @@ window.onload = function() {
             ctx.stroke();
         }
 
-        // Narisat stopinje rešitve
         drawFootprints();
 
-        // Narisat kovance
         for (var i = 0; i < coins.length; i++) {
             if (coins[i].taken==false) {
                 ctx.drawImage(coinImg, currentCoinFrame * coinFrameWidth, 0, coinFrameWidth, coinFrameHeight, coins[i].x, coins[i].y, 16, 16);
@@ -206,12 +196,10 @@ window.onload = function() {
         }
 
         // pirat
-            ctx.drawImage(
-                piratImg,
-                piratDir * piratFrameW, 0,          // kateri del slike (smer)
-                piratFrameW, piratFrameH,            // velikost enega frame-a
-                x - piratSize/2 + velikost/2,        // pozicija (centrirana)
-                y - piratSize/2 + velikost/2,
+            ctx.drawImage(piratImg,piratDir * piratFrameW,0,
+                piratFrameW, piratFrameH,
+                x - piratSize/2 + velikost/2,
+                y-12 - piratSize/2 + velikost/2,
                 piratSize, piratSize
             );
         
@@ -220,18 +208,19 @@ window.onload = function() {
             gameWin = true;
         }
         if (gameWin) {
-            obvestiloPrikazano = true;
             Swal.fire({
                 title: "Bravooo!",
                 text: "Zmagal si!",
                 icon: "success"
             }).then(() => location.reload());
+			return;
         } else if (gameOver) {
             Swal.fire({
                 title: "Več sreče prihodnjič.",
                 text: "Izgubil si!",
                 icon: "error"
             });
+			return;
         }
 
         requestAnimationFrame(update);
@@ -241,3 +230,11 @@ window.onload = function() {
     spawnCoins();
     update();
 };
+function gumb(){
+		Swal.fire({
+                title: "Credits",
+                text: "Gaj Čermelj 4.RA",
+                icon: "info",
+				confirmButtonColor: '#D8C7A1'
+            })
+	}
