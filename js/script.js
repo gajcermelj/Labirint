@@ -178,7 +178,7 @@ window.onload = function() {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        ctx.strokeStyle = "#BA9461";
+        ctx.strokeStyle = "transparent";
         ctx.lineWidth = 2;
         for (var i = 0; i < mazePathX1.length; i++) {
             ctx.beginPath();
