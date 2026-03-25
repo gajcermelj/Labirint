@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'PiratskaPisava';
+    src: url('../Caribbean-Caps-Font/CaribbeanCaps-1nMZ.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
     margin: 0;
 	padding: 0;
@@ -5,11 +11,10 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url("../Slike/beach (4).png");
+    background-image: url("../slike/beach (4).png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    font-family: Arial, sans-serif;
 }
 
 .container {
@@ -22,7 +27,6 @@ body {
 .main {
     display: flex;
     gap: 15px;
-	margin-top: 14vh;
 	margin-left: 14vh;
 }
 
@@ -32,9 +36,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
     box-sizing: border-box;
-	gap: 30vh;
+	gap: 24vh;
 }
 .srce{
 	height: 10vh;
@@ -44,44 +47,48 @@ body {
 #srce1{
 	height: 10vh;
 	width: 10vh;
-	background-image: url("../Slike/srce.png");
+	background-image: url("../slike/srce.png");
 	background-size: cover;
 	
 }
 #srce2{
 	height: 10vh;
 	width: 10vh;
-	background-image: url("../Slike/srce.png");
+	background-image: url("../slike/srce.png");
 	background-size: cover;
 }
 #srce3{
 	height: 10vh;
 	width: 10vh;
-	background-image: url("../Slike/srce.png");
+	background-image: url("../slike/srce.png");
 	background-size: cover;
 }
-
-
 #zaklad {
-    width: 300px;
+    width: 330px;
     height: 250px;
-    background-image: url("../Slike/zaklad.png");
+    background-image: url("../slike/zaklad.png");
     background-repeat: no-repeat;
     background-size: 1000px 230px;
     background-position: 0 0;
 }
-
-h1 {
-    margin: 0;
-    font-size: 40px;
-}
-
 .hud {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 4px;
     font-weight: bold;
+}
+.timer, .coins, .naslov{
+	font-size: 28px;
+    color: #EDC488;
+    font-weight: 900;
+    text-shadow: 
+        2px 2px 0px #000, 
+        4px 4px 0px rgba(0, 0, 0, 0.5),
+        0px 0px 10px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+    line-height: 1.2;
+	font-family:'PiratskaPisava';
 }
 canvas {
     background-color: transparent;

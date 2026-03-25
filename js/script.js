@@ -7,8 +7,8 @@ window.onload = function() {
     collisionCanvas.height = canvas.height;
     var collisionCtx = collisionCanvas.getContext('2d');
 
-    var timerElement = document.getElementById("timer");
-    var coinsElement = document.getElementById("coins");
+    var timerElement = document.getElementsByClassName("timer")[0];
+    var coinsElement = document.getElementsByClassName("coins")[0];
 
     var x = 232; 
     var y = 15;
@@ -23,8 +23,8 @@ window.onload = function() {
 	var mazePathY2=[2, 2, 18, 18, 18, 18, 18, 18, 34, 34, 34, 34, 34, 34, 34, 34, 34, 50, 50, 50, 50, 50, 50, 50, 50, 50, 66, 66, 66, 66, 66, 66, 66, 66, 66, 82, 82, 82, 82, 82, 82, 82, 98, 98, 98, 98, 98, 98, 114, 114, 114, 114, 114, 114, 114, 114, 130, 130, 130, 130, 130, 130, 130, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 162, 162, 162, 162, 162, 162, 162, 162, 162, 162, 162, 162, 178, 178, 178, 178, 178, 178, 178, 178, 194, 194, 194, 194, 194, 194, 194, 210, 210, 210, 210, 210, 210, 210, 210, 210, 226, 226, 226, 226, 226, 226, 226, 226, 242, 242, 242, 242, 242, 242, 242, 258, 258, 258, 258, 258, 258, 258, 258, 258, 258, 274, 274, 274, 274, 274, 274, 274, 274, 274, 274, 290, 290, 290, 290, 290, 290, 290, 306, 306, 306, 306, 306, 306, 306, 306, 306, 322, 322, 322, 322, 322, 322, 322, 322, 322, 322, 338, 338, 338, 338, 338, 338, 338, 354, 354, 354, 354, 354, 354, 354, 354, 370, 370, 370, 370, 370, 370, 370, 370, 386, 386, 386, 386, 386, 386, 386, 402, 402, 402, 402, 402, 402, 402, 402, 418, 418, 418, 418, 418, 418, 418, 434, 434, 434, 434, 434, 434, 450, 450, 450, 450, 450, 450, 450, 466, 466, 466, 466, 466, 466, 466, 466, 466, 466, 482, 482, 482, 66, 130, 178, 290, 450, 34, 98, 146, 210, 258, 306, 418, 466, 82, 130, 178, 242, 274, 354, 386, 434, 466, 34, 66, 162, 258, 434, 466, 82, 178, 242, 306, 354, 434, 482, 146, 194, 242, 290, 322, 354, 386, 482, 18, 82, 146, 242, 290, 338, 370, 434, 466, 98, 178, 226, 274, 354, 402, 466, 34, 98, 178, 274, 354, 466, 18, 162, 290, 354, 386, 434, 50, 98, 130, 210, 242, 338, 386, 434, 466, 114, 162, 194, 226, 290, 338, 370, 450, 98, 162, 226, 306, 354, 386, 418, 482, 18, 98, 130, 178, 258, 354, 418, 466, 82, 178, 242, 274, 338, 386, 434, 66, 98, 162, 194, 258, 306, 370, 450, 482, 34, 66, 114, 162, 242, 274, 322, 402, 466, 50, 226, 258, 306, 354, 434, 66, 98, 130, 162, 242, 322, 402, 466, 66, 130, 210, 290, 354, 386, 418, 466, 18, 82, 114, 178, 226, 338, 402, 450, 482, 50, 178, 242, 290, 370, 402, 466, 18, 66, 130, 226, 274, 306, 338, 434, 34, 66, 178, 322, 402, 450, 482, 18, 162, 226, 338, 386, 450, 34, 178, 226, 274, 306, 370, 418, 466, 50, 82, 194, 242, 290, 354, 434, 162, 226, 306, 370, 466, 50, 82, 146, 226, 418, 450, 482];
 	var tocke=[[234,2],[234,26],[218,26],[218,10],[170,10],[170,26],[154,26],[154,10],[122,10],[122,26],[106,26],[106,42],[90,42],[90,74],[106,74],[106,90],[42,90],[42,122],[26,122],[26,138],[10,138],[10,154],[26,154],[26,170],[42,170],[42,186],[58,186],[58,202],[42,202],[42,218],[26,218],[26,234],[42,234],[42,250],[58,250],[58,266],[106,266],[106,250],[122,250],[122,186],[186,186],[186,202],[202,202],[202,186],[234,186],[234,138],[218,138],[218,106],[266,106],[266,90],[298,90],[298,106],[314,106],[314,138],[346,138],[346,154],[314,154],[314,170],[330,170],[330,218],[314,218],[314,234],[346,234],[346,218],[362,218],[362,234],[426,234],[426,250],[458,250],[458,266],[474,266],[474,314],[394,314],[394,330],[378,330],[378,346],[410,346],[410,378],[426,378],[426,394],[442,394],[442,458],[426,458],[426,474],[394,474],[394,458],[410,458],[410,394],[394,394],[394,378],[378,378],[378,394],[362,394],[362,410],[330,410],[330,394],[314,394],[314,346],[298,346],[298,362],[266,362],[266,378],[250,378],[250,346],[234,346],[234,298],[218,298],[218,314],[202,314],[202,362],[234,362],[234,378],[218,378],[218,394],[154,394],[154,442],[186,442],[186,426],[234,426],[234,410],[250,410],[250,442],[218,442],[218,474],[250,474],[250,482]];
 
-    var finishX = tocke[tocke.length - 1][0];
-    var finishY = tocke[tocke.length - 1][1];
+    var finishX = tocke[250];
+    var finishY = tocke[482];
 
     var coinCount = 30;
     var coins = [];
@@ -40,7 +40,7 @@ window.onload = function() {
     var frame = 0;
 
     var piratImg = new Image();
-    piratImg.src = 'Slike/pirat_sprite.png';
+    piratImg.src = 'slike/pirat_sprite.png';
     var piratFrameW = 0;
     var piratFrameH = 0;
     var piratDir = 0; // 0=naprej, 1=nazaj, 2=levo, 3=desno
@@ -67,10 +67,18 @@ window.onload = function() {
         if (!igraPoteka || gameOver || gameWin) return;
 
         var dx = 0, dy = 0;
-        if (keys["ArrowUp"])    { dy = -1; piratDir = 1; }
-        if (keys["ArrowDown"])  { dy =  1; piratDir = 0; }
-        if (keys["ArrowLeft"])  { dx = -1; piratDir = 2; }
-        if (keys["ArrowRight"]) { dx =  1; piratDir = 3; }
+        if (keys["ArrowUp"]){
+			dy = -1; piratDir = 1; 
+		}
+        if (keys["ArrowDown"]){
+			dy =  1; piratDir = 0; 
+		}
+        if (keys["ArrowLeft"]){
+			dx = -1; piratDir = 2; 
+		}
+        if (keys["ArrowRight"]){
+			dx =  1; piratDir = 3; 
+		}
 
         if (dx !== 0 && dy !== 0) {
             var moved = false;
@@ -109,16 +117,16 @@ window.onload = function() {
     }
 
     function hitsWallAt(px, py) {
-        if (px < 0 || py < 0 || px >= canvas.width || py >= canvas.height) return true;
-        var pixel = collisionCtx.getImageData(px, py, 1, 1).data;
-        return (pixel[3] > 0 && pixel[0] === 0);
+        if (px < 0 || py < 0 || px >= canvas.width || py >= canvas.height) return true;//preveri zidove
+        var pixel = collisionCtx.getImageData(px, py, 1, 1).data;//vrne barvo pixla
+        return (pixel[3] > 0 && pixel[0] === 0);//ce je pixel >3 prazno, ce je 0 je crn
     }
 
     function canMoveRect(newX, newY) {
-        var sample = 2; 
-        for (var i = 0; i <= velikost; i += sample) {
-            if (hitsWallAt(newX + i, newY) || hitsWallAt(newX + i, newY + velikost)) return false;
-            if (hitsWallAt(newX, newY + i) || hitsWallAt(newX + velikost, newY + i)) return false;
+        var sample = 2; //preveri 2 pixla da je bolj hitro
+        for (var i = 0; i <= velikost; i += sample) {//preverja pixle okoli pirata cel kvadrat
+            if (hitsWallAt(newX + i, newY) || hitsWallAt(newX + i, newY + velikost)) return false;//zgornji in spodnji rob
+            if (hitsWallAt(newX, newY + i) || hitsWallAt(newX + velikost, newY + i)) return false;//levi in desni rob
         }
         return true;
     }
@@ -126,7 +134,7 @@ window.onload = function() {
     function spawnCoins() {
         for (var i = 0; i < coinCount; i++) {
             coins.push({
-                x: Math.floor(Math.random() * (canvas.width - 40)) + 20,
+                x: Math.floor(Math.random() * (canvas.width - 40)) + 20,//polni tabelo coins, doda na konec x,y
                 y: Math.floor(Math.random() * (canvas.height - 40)) + 20,
                 taken: false
             });
@@ -140,15 +148,16 @@ window.onload = function() {
                 coins[i].taken = true;
                 coinsCollected++;
                 coinsElement.textContent = "Kovanci: " + coinsCollected + "/" + coinCount;
-                if (coinsCollected%3==0){
+                if (coinsCollected%3==0&&frame<4){
 					frame++;
+					
 				}
-                document.getElementById("zaklad").style.backgroundPosition = `-${frame * 250}px 0px`;
+                document.getElementById("zaklad").style.backgroundPosition = `-${frame * 252}px 0px`;
             }
         }
     }
 
-    var totalSeconds = 100;
+    var totalSeconds = 150;
     var timerInterval = setInterval(() => {
         totalSeconds--;
         timerElement.textContent = totalSeconds + " sekund";
@@ -211,14 +220,16 @@ window.onload = function() {
             Swal.fire({
                 title: "Bravooo!",
                 text: "Zmagal si!",
-                icon: "success"
+                icon: "success",
+				confirmButtonColor: '#D8C7A1'
             }).then(() => location.reload());
 			return;
         } else if (gameOver) {
             Swal.fire({
                 title: "Več sreče prihodnjič.",
                 text: "Izgubil si!",
-                icon: "error"
+                icon: "error",
+				confirmButtonColor: '#D8C7A1'
             });
 			return;
         }
